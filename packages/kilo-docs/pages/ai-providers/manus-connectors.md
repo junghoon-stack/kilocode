@@ -18,7 +18,7 @@ sidebar_label: Manus Connectors
 | `Groq` | OpenAI Compatible | Native Provider | Native Provider |
 | `미스트랄` | OpenAI Compatible | Native Provider | Native Provider |
 | `오픈라우터` | OpenAI Compatible | Native Provider | Native Provider |
-| `업스테이지` | OpenAI Compatible | 공식 문서 확인 필요 | 공식 문서 확인 필요 |
+| `업스테이지` | OpenAI Compatible | `https://api.upstage.ai/v1` | `/models` 확인 필요 |
 | `Ai1api` | OpenAI Chat Completions | `https://ai1api.com/v1` | 미문서화 |
 | `Api.airforce` | OpenAI Chat Completions | `https://api.airforce/v1` | `/v1/models` |
 | `Ashna` | OpenAI Chat Completions / Responses / Anthropic | `https://api.ashna.ai/v1/api` | `/v1/api/models` |
@@ -88,6 +88,10 @@ Provider별로 사용할 수 있는 Base URL 예시는 다음과 같습니다.
       "env": ["OPEM_API_KEY"],
       "options": { "baseURL": "https://ai1api.com/v1" }
     },
+    "upstage": {
+      "env": ["UPSTAGE_API_KEY"],
+      "options": { "baseURL": "https://api.upstage.ai/v1" }
+    },
     "ashna": {
       "env": ["ASHNA_API_KEY"],
       "options": { "baseURL": "https://api.ashna.ai/v1/api" }
@@ -116,9 +120,7 @@ Provider별로 사용할 수 있는 Base URL 예시는 다음과 같습니다.
 }
 ```
 
-Ai1api, Freemodel.dev는 공식 문서에서 모델 목록 경로가 확인되지 않았으므로 모델을 수동으로 등록해야 합니다. Api.airforce, Ashna, Chuizi AI, LLMsRelay, Opper AI, RouterLab은 공식 모델 목록 경로를 사용할 수 있습니다.
-
-아직 업스테이지 커넥터의 공식 Base URL은 이 조사에서 확정하지 않았습니다. 업스테이지는 임의 URL로 연결하지 말고, native Provider 또는 공식 OpenAI 호환 문서의 URL을 확인한 뒤 추가하세요.
+Ai1api, Freemodel.dev는 공식 문서에서 모델 목록 경로가 확인되지 않았으므로 모델을 수동으로 등록해야 합니다. Api.airforce, Ashna, Chuizi AI, LLMsRelay, Opper AI, RouterLab은 공식 모델 목록 경로를 사용할 수 있습니다. 업스테이지는 `https://api.upstage.ai/v1`을 Base URL로 사용하고, 연결 후 `/models` 응답을 확인하세요.
 
 모든 Provider에서 최종적으로 확인해야 하는 항목은 모델 ID, context/output 제한, rate limit, 데이터 보존 정책, 비용입니다.
 
