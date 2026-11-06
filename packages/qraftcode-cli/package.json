@@ -1,0 +1,19 @@
+{
+  "name": "@qraftcode/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Account-optional QraftCode CLI scaffold.",
+  "bin": {
+    "qraft": "./bin/qraft"
+  },
+  "scripts": {
+    "dev": "bun src/index.ts",
+    "typecheck": "tsgo --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@qraftcode/core": "workspace:*"
+  }
+}

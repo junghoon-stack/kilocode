@@ -1,0 +1,15 @@
+{
+  "name": "@qraftcode/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Provider-neutral contracts and registry for QraftCode.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsgo --noEmit",
+    "test": "bun test"
+  }
+}
