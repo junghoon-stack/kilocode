@@ -10,7 +10,7 @@ sidebar_label: Manus Connectors
 
 ## 현재 활성 커넥터
 
-현재 Manus에서 `enabled`로 확인된 API 커넥터는 다음과 같습니다. 아래 Base URL은 각 서비스의 공식 문서에서 확인한 값입니다.
+현재 Manus에서 `enabled`로 확인된 API 커넥터는 **14개**입니다. 아래 Base URL은 각 서비스의 공식 문서에서 확인한 값입니다.
 
 | 커넥터 이름 | API 프로토콜 | Base URL | 모델 목록 |
 |---|---|---|---|
@@ -27,6 +27,7 @@ sidebar_label: Manus Connectors
 | `LLMsRelay` | OpenAI Chat Completions | `https://api.llmsrelay.com/v1` | `/v1/models` |
 | `OPPER_API_KEY` | OpenAI Chat Completions | `https://api.opper.ai/v3/compat` | `/v3/compat/models` |
 | `routerlab` | OpenAI Chat Completions | `https://api.routerlab.ch/v1` | `/v1/models` |
+| `POLLINATIONS_API_KEY` | 프로토콜 확인 필요 | 공식 문서 확인 필요 | 공식 문서 확인 필요 |
 
 `GitHub`는 활성화된 Manus 내장 커넥터이지만 모델 Provider가 아닙니다. 저장소·브랜치·커밋 관리에 사용합니다.
 
@@ -85,7 +86,7 @@ Provider별로 사용할 수 있는 Base URL 예시는 다음과 같습니다.
 {
   "provider": {
     "ai1api": {
-      "env": ["OPEM_API_KEY"],
+      "env": ["OPEN_API_KEY"],
       "options": { "baseURL": "https://ai1api.com/v1" }
     },
     "upstage": {
@@ -120,7 +121,7 @@ Provider별로 사용할 수 있는 Base URL 예시는 다음과 같습니다.
 }
 ```
 
-Ai1api, Freemodel.dev는 공식 문서에서 모델 목록 경로가 확인되지 않았으므로 모델을 수동으로 등록해야 합니다. Api.airforce, Ashna, Chuizi AI, LLMsRelay, Opper AI, RouterLab은 공식 모델 목록 경로를 사용할 수 있습니다. 업스테이지는 `https://api.upstage.ai/v1`을 Base URL로 사용하고, 연결 후 `/models` 응답을 확인하세요.
+Ai1api, Freemodel.dev는 공식 문서에서 모델 목록 경로가 확인되지 않았으므로 모델을 수동으로 등록해야 합니다. Api.airforce, Ashna, Chuizi AI, LLMsRelay, Opper AI, RouterLab은 공식 모델 목록 경로를 사용할 수 있습니다. 업스테이지는 `https://api.upstage.ai/v1`을 Base URL로 사용하고, 연결 후 `/models` 응답을 확인하세요. `POLLINATIONS_API_KEY`는 활성 커넥터로 확인했지만 아직 Base URL과 프로토콜을 확인하지 않았습니다.
 
 모든 Provider에서 최종적으로 확인해야 하는 항목은 모델 ID, context/output 제한, rate limit, 데이터 보존 정책, 비용입니다.
 
