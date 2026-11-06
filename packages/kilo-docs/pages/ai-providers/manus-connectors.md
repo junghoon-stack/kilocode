@@ -10,23 +10,23 @@ sidebar_label: Manus Connectors
 
 ## 현재 활성 커넥터
 
-현재 Manus에서 `enabled`로 확인된 API 커넥터는 다음과 같습니다.
+현재 Manus에서 `enabled`로 확인된 API 커넥터는 다음과 같습니다. 아래 Base URL은 각 서비스의 공식 문서에서 확인한 값입니다.
 
-| 커넥터 이름 | Kilo 연결 방식 | 상태 |
-|---|---|---|
-| `Anthropic` | Native Anthropic Messages Provider | 바로 사용 가능 |
-| `Groq` | Native Groq Provider | 바로 사용 가능 |
-| `미스트랄` | Native Mistral Provider | 바로 사용 가능 |
-| `오픈라우터` | Native OpenRouter Provider | 바로 사용 가능 |
-| `업스테이지` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `Ai1api` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `Api.airforce` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `Ashna` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `CHUIZI_API_KEY` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `Freemodel.dev` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `LLMsRelay` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `OPPER_API_KEY` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
-| `routerlab` | OpenAI-compatible Custom Provider | Base URL 확인 필요 |
+| 커넥터 이름 | API 프로토콜 | Base URL | 모델 목록 |
+|---|---|---|---|
+| `Anthropic` | Anthropic Messages | Native Provider | Native Provider |
+| `Groq` | OpenAI Compatible | Native Provider | Native Provider |
+| `미스트랄` | OpenAI Compatible | Native Provider | Native Provider |
+| `오픈라우터` | OpenAI Compatible | Native Provider | Native Provider |
+| `업스테이지` | OpenAI Compatible | 공식 문서 확인 필요 | 공식 문서 확인 필요 |
+| `Ai1api` | OpenAI Chat Completions | `https://ai1api.com/v1` | 미문서화 |
+| `Api.airforce` | OpenAI Chat Completions | `https://api.airforce/v1` | `/v1/models` |
+| `Ashna` | OpenAI Chat Completions / Responses / Anthropic | `https://api.ashna.ai/v1/api` | `/v1/api/models` |
+| `CHUIZI_API_KEY` | OpenAI Chat Completions | `https://api.chuizi.ai/v1` | `/models` |
+| `Freemodel.dev` | OpenAI Chat Completions / Responses / Anthropic | `https://api.freemodel.dev/v1` | 미문서화 |
+| `LLMsRelay` | OpenAI Chat Completions | `https://api.llmsrelay.com/v1` | `/v1/models` |
+| `OPPER_API_KEY` | OpenAI Chat Completions | `https://api.opper.ai/v3/compat` | `/v3/compat/models` |
+| `routerlab` | OpenAI Chat Completions | `https://api.routerlab.ch/v1` | `/v1/models` |
 
 `GitHub`는 활성화된 Manus 내장 커넥터이지만 모델 Provider가 아닙니다. 저장소·브랜치·커밋 관리에 사용합니다.
 
@@ -38,7 +38,7 @@ Kilo의 native Provider를 사용할 때는 API 키를 `kilo.json`에 직접 넣
 {
   "provider": {
     "groq": {
-      "env": ["GROQ_API_KEY"]
+      "env": ["groq_api_key"]
     },
     "mistral": {
       "env": ["MISTRAL_API_KEY"]
@@ -57,7 +57,7 @@ Kilo의 native Provider를 사용할 때는 API 키를 `kilo.json`에 직접 넣
 
 ## Custom Provider 설정
 
-나머지 커넥터는 이름만으로 API 프로토콜이나 Base URL을 안전하게 추정할 수 없습니다. 해당 커넥터가 OpenAI Chat Completions 호환 API를 제공한다는 것을 확인한 뒤 다음 형태로 추가합니다.
+공식 문서에서 확인된 커스텀 Provider는 아래처럼 바로 추가할 수 있습니다. `models` 안의 실제 모델 ID는 각 Provider의 모델 목록 또는 계정 화면에서 확인한 값을 사용하세요.
 
 ```jsonc
 {
@@ -72,22 +72,57 @@ Kilo의 native Provider를 사용할 때는 API 키를 `kilo.json`에 직접 넣
         }
       },
       "options": {
-        "baseURL": "https://provider.example.com/v1"
+        "baseURL": "https://api.airforce/v1"
       }
     }
   }
 }
 ```
 
-반드시 확인해야 하는 항목은 다음과 같습니다.
+Provider별로 사용할 수 있는 Base URL 예시는 다음과 같습니다.
 
-- Base URL과 `/models`, `/chat/completions` 경로
-- OpenAI Chat Completions인지, Responses인지, Anthropic Messages인지
-- 모델 ID와 context/output 제한
-- API 키 환경 변수 이름
-- rate limit, 데이터 보존 정책, 비용
+```jsonc
+{
+  "provider": {
+    "ai1api": {
+      "env": ["OPEM_API_KEY"],
+      "options": { "baseURL": "https://ai1api.com/v1" }
+    },
+    "ashna": {
+      "env": ["ASHNA_API_KEY"],
+      "options": { "baseURL": "https://api.ashna.ai/v1/api" }
+    },
+    "chuizi": {
+      "env": ["CHUIZI_API_KEY"],
+      "options": { "baseURL": "https://api.chuizi.ai/v1" }
+    },
+    "freemodel": {
+      "env": ["FREEMODEL_API_KEY"],
+      "options": { "baseURL": "https://api.freemodel.dev/v1" }
+    },
+    "llmsrelay": {
+      "env": ["LLMSRELAY_API_KEY"],
+      "options": { "baseURL": "https://api.llmsrelay.com/v1" }
+    },
+    "opper": {
+      "env": ["OPPER_API_KEY"],
+      "options": { "baseURL": "https://api.opper.ai/v3/compat" }
+    },
+    "routerlab": {
+      "env": ["ROUTERLAB_API_KEY"],
+      "options": { "baseURL": "https://api.routerlab.ch/v1" }
+    }
+  }
+}
+```
 
-엔드포인트를 모르는 상태에서 커넥터 이름만 보고 URL을 추측해 연결하면 잘못된 서비스로 요청하거나 키가 소모될 수 있습니다.
+Ai1api, Freemodel.dev는 공식 문서에서 모델 목록 경로가 확인되지 않았으므로 모델을 수동으로 등록해야 합니다. Api.airforce, Ashna, Chuizi AI, LLMsRelay, Opper AI, RouterLab은 공식 모델 목록 경로를 사용할 수 있습니다.
+
+아직 업스테이지 커넥터의 공식 Base URL은 이 조사에서 확정하지 않았습니다. 업스테이지는 임의 URL로 연결하지 말고, native Provider 또는 공식 OpenAI 호환 문서의 URL을 확인한 뒤 추가하세요.
+
+모든 Provider에서 최종적으로 확인해야 하는 항목은 모델 ID, context/output 제한, rate limit, 데이터 보존 정책, 비용입니다.
+
+공식 문서 링크: [AI1API](https://ai1api.com/docs/api), [Api.Airforce](https://api.airforce/docs/quickstart/), [AshnaAI](https://www.ashna.ai/api-docs), [Chuizi AI](https://chuizi.ai/docs/api/chat-completions), [FreeModel](https://freemodel.dev/), [LLMsRelay](https://llmsrelay.com/docs/api-reference/openai/), [Opper AI](https://docs.opper.ai/build/gateway/drop-in-sdks), [RouterLab](https://routerlab.ch/en/docs/openai-compatible).
 
 ## 안전한 연결 원칙
 
