@@ -1,6 +1,6 @@
 # Provider verification ledger
 
-This ledger is intentionally conservative. Listing a provider is not evidence that anonymous access, OpenAI compatibility, a particular endpoint, or a model ID exists.
+This ledger is intentionally conservative. Listing a provider is not evidence that anonymous access, a free tier, OpenAI compatibility, a particular endpoint, or a model ID exists. Candidates are not routed to or advertised as available until the verification gate is complete.
 
 ## Status meanings
 
@@ -9,23 +9,26 @@ This ledger is intentionally conservative. Listing a provider is not evidence th
 - **Implemented:** adapter code and tests exist; this alone does not certify production readiness.
 - **Live-tested:** tested against the actual provider API under documented conditions.
 
-## Anonymous provider candidates
+## Requested provider candidates
 
 | Provider | Status | Evidence / notes |
 |---|---|---|
-| LLM7 | Unverified | Verify official docs, unauthenticated access, models, capabilities, limits, and terms. |
+| OVHcloud AI Endpoints | Unverified | Verify official API docs, account/auth requirements, free allocations/pricing, model catalog, capabilities, rate limits, and terms. |
+| LLM7 | Unverified | Verify canonical official docs, authentication, whether free-tier use is available, models, capabilities, rate limits, and terms. |
+| BlockRun | Unverified | Verify official API/auth documentation, pricing/free allocation, model catalog, capabilities, limits, and terms. |
+| uncloseai | Unverified | Verify canonical provider identity, official API/auth documentation, pricing, model catalog, and terms. |
+| UncensoredLLM.sbs | Unverified | Verify service identity, official docs, authentication, pricing/free allocation, data and safety terms, and capabilities. |
+| llmtech | Unverified | Verify the intended service's canonical identity and official API/auth, pricing, model, and capability documentation. |
+| AI Horde | Unverified | Verify current official API docs, access conditions, quotas, model/task availability, and terms. |
+| Hetzner Inference | Unverified | Verify exact product/service identity, official API/auth docs, pricing/free allocation, model catalog, and terms. |
+| ch.at | Unverified | Verify canonical service identity, official API/auth docs, pricing/free access, model catalog, and terms. |
+
+## Other previously proposed candidates
+
+| Provider | Status | Evidence / notes |
+|---|---|---|
 | Kilo | Unverified | Verify which service/product and permitted access mode is intended. |
-| OVHcloud AI Endpoints | Unverified | Verify current official API and authentication requirements. |
-| BlockRun | Unverified | Verify official API documentation and access policy. |
-| UncensoredLLM.sbs | Unverified | Verify service identity, official docs, auth, and safety/data terms. |
-| uncloseai | Unverified | Verify canonical provider identity and official API documentation. |
-| AI Horde | Unverified | Verify current API, access conditions, quotas, and supported task types. |
 | OpenAPIs.online | Unverified | Verify official API documentation, authentication, and terms. |
-
-## Managed-credential provider candidates
-
-| Provider | Status | Evidence / notes |
-|---|---|---|
 | api.airforce | Unverified | Verify canonical provider identity and official API/auth documentation. |
 | freemodel.dev | Unverified | Verify official API/auth documentation, limits, and terms. |
 | LLMsRelay | Unverified | Verify official API/auth documentation and model catalog. |
@@ -46,4 +49,4 @@ This ledger is intentionally conservative. Listing a provider is not evidence th
 
 ## Required record for each provider
 
-Before moving a row to **Documented**, add a provider-specific record with official source URLs, date reviewed, exact base URL and operations, authentication method, model discovery source, supported capabilities, rate limits/quotas, retry semantics, data retention/training terms, and any restrictions on proxying or resale. Cite only official sources where available and clearly mark unresolved points.
+Before moving a row to **Documented**, add a provider-specific record with official source URLs, date reviewed, exact base URL and operations, authentication method, model discovery source, supported capabilities, rate limits/quotas, free-tier or pricing conditions (including whether the allocation is promotional, capped, or requires an account), retry semantics, data retention/training terms, and restrictions on proxying or resale. Cite official sources where available and clearly mark unresolved points. Free-tier usage and service stability must not be implied unless current official terms support that claim.
