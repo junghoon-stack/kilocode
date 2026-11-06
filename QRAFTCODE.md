@@ -9,13 +9,13 @@ QraftCode는 누구나 AI 모델과 Provider를 더 자유롭게 선택해 코�
 
 ## 개발 상태
 
-프로젝트는 초기 개발 중입니다. 현재 저장소에는 QraftCode 아키텍처와 브랜드 자료, Provider 계약 스캐폴드, CLI/Zen 개발용 골격, Web 설정 화면 미리보기가 있습니다. 이들은 완성된 제품이 아닙니다. Provider 연동과 API 키 설정, 계정/인증, 암호화된 키 저장, 실제 Web 채팅, 이미지/비전, 배포 및 운영 기능은 아직 구현·검증되지 않았습니다. 검증되지 않은 Provider는 지원/익명으로 표시하지 않으며, 스캐폴드는 실제 AI 응답을 가장하지 않습니다.
+프로젝트는 초기 개발 중입니다. 현재 저장소에는 QraftCode 아키텍처와 브랜드 자료, Provider 계약 스캐폴드, CLI/Zen 개발용 골격, Web 설정 화면 미리보기가 있습니다. 이들은 완성된 제품이 아닙니다. 실제 Provider 연동과 API 키 설정, 계정/인증, 암호화된 키 저장, 실제 Web 채팅, 이미지/비전, 배포 및 운영 기능은 아직 구현·검증되지 않았습니다. 검증되지 않은 Provider는 지원/익명으로 표시하지 않으며, 스캐폴드는 실제 AI 응답을 가장하지 않습니다.
 
-## API 키를 어디에 입력하나요?
+## API 키는 누가 설정하나요?
 
-**현재 QraftCode에는 실제 API 키를 입력할 수 있는 안전한 기능이 없습니다.** Web 화면의 키 입력/저장 버튼은 비활성화되어 있고 CLI/Zen도 실제 Provider 인증을 처리하지 않습니다. API 키를 이 채팅에 보내거나 코드/저장소에 커밋하지 마세요.
+**QraftCode 사용자는 Provider API 키를 입력하지 않습니다.** QraftCode 운영자가 자신의 Provider 계정으로 발급한 서버용 키를 배포 환경의 Secret Manager에서 설정하는 것이 제품 정책입니다. 사용자 Web에는 키 입력란이 없고, 키는 서버 밖으로 반환되지 않도록 설계합니다.
 
-자세한 현황과 기존 개발용 KiloCode 기능의 제한적인 사용 방법은 [`docs/qraftcode/api-key-setup.md`](docs/qraftcode/api-key-setup.md)를 확인하세요. 기존 KiloCode Provider 화면을 사용하는 것은 아직 QraftCode API 연동 기능이 아닙니다.
+다만 현재는 Zen에 실제 Provider 연결이나 운영자 키 로더가 없어 운영자도 아직 QraftCode에서 키를 등록해 서비스를 켤 수 없습니다. API 키를 이 채팅이나 코드/저장소에 보내지 마세요. 운영자 설정의 향후 설계는 [`docs/qraftcode/admin-provider-credentials.md`](docs/qraftcode/admin-provider-credentials.md), 현재 한계는 [`docs/qraftcode/api-key-setup.md`](docs/qraftcode/api-key-setup.md)에 설명되어 있습니다.
 
 ## 제품과 문서
 
@@ -23,6 +23,7 @@ QraftCode는 누구나 AI 모델과 Provider를 더 자유롭게 선택해 코�
 - [`docs/qraftcode/architecture.md`](docs/qraftcode/architecture.md) — 제품 경계 및 아키텍처
 - [`docs/qraftcode/branding-migration.md`](docs/qraftcode/branding-migration.md) — 안전한 KiloCode 기반 전환 방침
 - [`docs/qraftcode/providers/README.md`](docs/qraftcode/providers/README.md) — Provider 검증 현황
+- [`docs/qraftcode/admin-provider-credentials.md`](docs/qraftcode/admin-provider-credentials.md) — 운영자 전용 API 자격 증명 정책
 - [`docs/qraftcode/assets/qraftcode-logo.svg`](docs/qraftcode/assets/qraftcode-logo.svg) — 제공된 로고
 - [`apps/qraftcode-web/`](apps/qraftcode-web/) — 정적 Web 설정 UI 미리보기
 - [`packages/qraftcode-cli/`](packages/qraftcode-cli/) — 초기 CLI 스캐폴드

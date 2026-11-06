@@ -1,7 +1,7 @@
 # QraftCode Web UI preview
 
-`index.html` is a static, responsive Korean-language preview of the future QraftCode Web model/API settings page. Open it locally in a browser to view the design. It does not connect to a backend and must not be used to enter real provider keys.
+This static, responsive settings-page preview shows the planned provider/model availability UI. It is not connected to a backend.
 
-The API key and model fields and action buttons are intentionally disabled. No key is accepted, transmitted, logged, or stored. Providers are shown as unverified candidates; the list is not an assertion that those integrations or anonymous access work.
+QraftCode end users are **not** asked to supply provider API keys. QraftCode operators configure service-owned credentials through a deployment Secret Manager after verified provider adapters and secure server-side loading exist. The current Zen scaffold has no such integration, so no key can be registered yet. The preview intentionally has no key input field and does not send or store secrets.
 
-Before enabling credential entry, implement Web authentication, server-side ownership checks, a vetted encryption/key-management design, secret redaction, rate limiting, and documented provider integrations. See [`docs/qraftcode/api-settings-ux.md`](../../docs/qraftcode/api-settings-ux.md).
+See [`docs/qraftcode/admin-provider-credentials.md`](../../docs/qraftcode/admin-provider-credentials.md) and [`docs/qraftcode/api-key-setup.md`](../../docs/qraftcode/api-key-setup.md).

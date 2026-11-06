@@ -1,29 +1,21 @@
-# QraftCode에서 API 키를 설정하는 방법
+# QraftCode API 키 설정 현황
 
-## 주의: QraftCode 스캐폴드에서는 아직 API 키를 입력할 수 없습니다
+## 제품 정책
 
-현재 추가된 `packages/qraftcode-cli`는 안내와 빈 Provider/Model 목록을 보여주는 초기 스캐폴드입니다. 실제 provider 인증/요청 기능이 연결되지 않았습니다. `apps/qraftcode-web`는 정적 UI 미리보기라 키 입력과 저장을 비활성화했습니다. `packages/qraftcode-zen`은 검증된 Provider가 없어 생성 요청에 `503 no_verified_provider`를 반환합니다. 따라서 **QraftCode CLI/Web/Zen 설정 화면에 실제 API 키를 입력하지 마세요.**
+QraftCode 사용자는 자신의 Provider API 키를 입력하지 않습니다. **QraftCode 운영자가 서비스용 Provider 자격 증명을 관리합니다.** 사용자는 QraftCode 계정과 서비스가 제공하는 모델을 사용합니다. API 키 입력 UI를 사용자에게 보여주거나 입력을 요구하는 것이 목표가 아닙니다.
 
-이 대화에도 API 키를 보내지 마세요. API 키를 이미 채팅, 코드, 공개 이슈 또는 Git 저장소에 노출했다면 제공자 대시보드에서 즉시 폐기하고 새 키를 발급하세요.
+## 현재 구현 상태
 
-## 당장 로컬에서 기존 기능을 사용하려면
+현재 QraftCode CLI는 안내/목록 스캐폴드이고, Web 설정 화면은 정적 미리보기이며, Zen에는 실제 Provider 어댑터나 관리자 키 로더가 없습니다. 사용자는 물론 운영자도 현재 QraftCode 제품을 통해 키를 등록하거나 모델 요청을 보낼 수 없습니다. UI 미리보기에는 키 입력란이 없으며, 키를 채팅·코드·저장소에 넣지 마세요.
 
-이 저장소에는 KiloCode에서 이어받은 VS Code 확장 및 CLI가 별도로 남아 있습니다. 이들은 QraftCode CLI/Zen과 같은 제품이 아니며, QraftCode가 해당 연동을 검증 또는 지원한다고 의미하지 않습니다. 개발 환경에서 원본 provider 기능을 시험하려는 경우에만 저장소의 기존 Kilo 설정 경로를 이용할 수 있습니다.
+## 운영자 방식의 예정 설계
 
-1. 저장소 개발 가이드에 따라 VS Code 확장을 로컬로 실행합니다.
-2. 확장 설정의 **Providers** 화면에서 사용하려는 Provider를 선택합니다.
-3. 해당 Provider의 공식 문서에서 발급한 API 키만 입력하고 모델을 선택합니다.
-4. 키를 `kilo.jsonc`/`qraftcode.jsonc`, 소스 코드, `.env` 커밋, 스크린샷 또는 채팅에 넣지 마세요. 프로젝트 설정 파일을 저장소에 커밋하면 안 됩니다.
-5. Provider별 인증/기능/모델은 달라집니다. Provider의 공식 문서에서 endpoint, 지원 모델, 쿼터, 데이터 처리 정책을 직접 확인하세요.
+Provider 공식 API 문서와 연동을 검증한 다음, 운영자가 자신의 서비스용 키를 프로덕션 배포 환경의 Secret Manager에 보관합니다. Zen 서버의 검증된 어댑터만 접근하고, 키는 Web 클라이언트·API 응답·로그에 노출하지 않습니다. provider별 인증 변수 이름이나 endpoint는 공식 문서 확인 전에는 지정하지 않습니다. 자세한 내용은 [`admin-provider-credentials.md`](admin-provider-credentials.md)를 확인하세요.
 
-기존 KiloCode 확장의 보안/저장 방식은 그 앱이 제공하는 설정 흐름과 로컬 실행 환경에 적용됩니다. 이것은 QraftCode Web 서버에 키를 저장하는 기능이 아니고, QraftCode의 사용 가능/지원 보증도 아닙니다. API 키를 저장할 수단과 보안 정책이 확실치 않다면 입력하지 마세요.
+## 개발용 KiloCode 기능과 구별
 
-## QraftCode API 키 설정 기능의 출시 조건
+기존 KiloCode VS Code 확장 및 CLI에 Provider 설정 기능이 있을 수 있으나, 그 설정은 해당 기존 클라이언트에 대한 것입니다. QraftCode 운영자 서버 설정이 아니며 QraftCode 사용자가 입력할 키를 요구한다는 의미도 아닙니다. 이 프로젝트는 아직 KiloCode 런타임을 QraftCode 제품으로 완전히 전환하지 않았습니다.
 
-QraftCode Web에서 키를 받으려면 사용자 로그인, 세션 보호, 사용자별 접근 제어, 서버 측 암호화/키 관리, 키 교체·삭제, 비밀 값 로그 제거, 연결 테스트 제한, Provider 공식문서 검증이 먼저 구현되어야 합니다. 브라우저는 저장된 키의 평문을 다시 받아서는 안 됩니다. 이 조건이 충족될 때까지 설정 미리보기의 입력/저장 버튼은 비활성 상태로 둡니다.
+## 보안 안내
 
-QraftCode Zen의 운영자 관리 Provider 키는 사용자 개인 키와 별도의 서버 전용 설정으로 관리되어야 합니다. 관리용 비밀값을 브라우저에 전달하거나 공개 저장소에 저장하면 안 됩니다.
-
-## 앞으로 제공할 설정 화면
-
-보안 저장 기능이 준비되면 QraftCode Web에서 **설정 → 모델 및 API**를 열고, 검증된 Provider를 선택한 뒤 API 키를 입력하고 저장합니다. 저장된 키는 마스킹된 설정 상태만 보여주며 다시 평문으로 표시하지 않습니다. 연결 테스트는 서버에서 수행하고 결과에 민감한 응답이나 키를 포함하지 않습니다. 현재 이 흐름은 아직 구현되지 않았습니다.
+이 대화에 API 키를 보내지 마세요. 키를 공개 채팅, 코드, 스크린샷 또는 공개 Git 저장소에 노출했다면 Provider 대시보드에서 즉시 폐기하고 새 키를 발급하세요. 실제 운영 설정 기능은 Secret Manager, 서버 접근 제어, 키 회전/폐기, 로그 redaction, rate limiting, TLS 및 provider별 실제 API 테스트가 구현된 후에만 활성화합니다.
