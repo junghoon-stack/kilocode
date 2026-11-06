@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101010" />
+    <meta name="description" content="QraftCode 모델 및 API 설정 화면 미리보기" />
+    <title>모델 및 API 설정 — QraftCode</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" aria-label="주 메뉴">
+        <a class="brand" href="#home" aria-label="QraftCode 홈">
+          <span class="brand-mark" aria-hidden="true">Q</span>
+          <span>Qraft<span class="brand-light">Code</span></span>
+        </a>
+        <div class="side-label">워크스페이스</div>
+        <a class="nav-item" href="#home"><span aria-hidden="true">⌂</span> 새 대화</a>
+        <a class="nav-item" href="#history"><span aria-hidden="true">◷</span> 대화 기록</a>
+        <div class="side-label side-label-spaced">환경 설정</div>
+        <a class="nav-item active" href="#settings" aria-current="page"><span aria-hidden="true">⚙</span> 모델 및 API</a>
+        <a class="nav-item" href="#privacy"><span aria-hidden="true">◇</span> 개인정보</a>
+        <div class="sidebar-bottom">
+          <div class="account-dot" aria-hidden="true">G</div>
+          <div><strong>게스트 미리보기</strong><small>설정은 아직 저장되지 않습니다</small></div>
+        </div>
+      </aside>
+
+      <main class="main" id="settings">
+        <header class="topbar"><span>설정 <span class="crumb">/ 모델 및 API</span></span><span class="preview-pill"><i></i> UI 미리보기</span></header>
+        <div class="content">
+          <div class="eyebrow">QRAFTCODE ZEN</div>
+          <h1>모델 및 API</h1>
+          <p class="intro">원하는 Provider를 선택하고 연결 상태를 관리하세요.</p>
+
+          <section class="notice" aria-labelledby="notice-title">
+            <span class="notice-icon" aria-hidden="true">i</span>
+            <div><strong id="notice-title">설정 화면 미리보기입니다</strong><p>아직 안전한 서버 저장소가 연결되지 않아 API 키 입력과 저장을 사용할 수 없습니다. 실제 API 키를 입력하지 마세요.</p></div>
+            <span class="notice-tag">저장 비활성</span>
+          </section>
+
+          <section class="panel provider-panel" aria-labelledby="provider-title">
+            <div class="panel-heading"><div><h2 id="provider-title">Provider 연결</h2><p>지원 상태와 인증 요구사항을 확인하세요.</p></div><span class="count">0개 연결됨</span></div>
+            <label class="field-label" for="provider">Provider 선택</label>
+            <select id="provider" name="provider">
+              <option value="">Provider 선택</option>
+              <optgroup label="검증 대기 — 사용 불가">
+                <option value="llm7">LLM7 · 검증 대기</option>
+                <option value="kilo">Kilo · 검증 대기</option>
+                <option value="ovhcloud">OVHcloud AI Endpoints · 검증 대기</option>
+                <option value="blockrun">BlockRun · 검증 대기</option>
+                <option value="ai-horde">AI Horde · 검증 대기</option>
+                <option value="mistral">Mistral · 검증 대기</option>
+                <option value="groq">Groq · 검증 대기</option>
+                <option value="anthropic">Anthropic · 검증 대기</option>
+                <option value="openrouter">OpenRouter · 검증 대기</option>
+              </optgroup>
+            </select>
+            <div class="provider-state" id="provider-state" aria-live="polite"><span class="state-dot"></span><span>Provider를 선택하면 검증 상태가 표시됩니다.</span></div>
+
+            <div class="divider"></div>
+            <div class="field-row"><div><label class="field-label" for="api-key">API 키</label><p class="field-help">브라우저나 대화에 실제 키를 입력하지 마세요.</p></div><span class="lock-label">⌑ 서버 저장소 미연결</span></div>
+            <div class="input-wrap"><input id="api-key" type="password" placeholder="저장 기능 구현 후 활성화됩니다" disabled autocomplete="off" aria-describedby="key-hint" /><button class="reveal" type="button" disabled aria-label="API 키 표시">표시</button></div>
+            <p class="disabled-hint" id="key-hint">키 입력은 서버 측 인증, 암호화 저장, 비밀정보 제거가 구현된 후 제공됩니다.</p>
+
+            <label class="field-label model-label" for="model">모델 ID <span class="optional">선택 사항</span></label>
+            <input id="model" type="text" placeholder="검증된 모델이 등록되면 선택할 수 있습니다" disabled />
+            <div class="actions"><button class="button secondary" type="button" disabled>연결 테스트</button><button class="button primary" type="button" disabled>저장</button></div>
+          </section>
+
+          <section class="panel privacy-panel" id="privacy" aria-labelledby="privacy-title">
+            <div class="privacy-icon" aria-hidden="true">◈</div>
+            <div><h2 id="privacy-title">개인정보 및 데이터 흐름</h2><p>Provider 연결 시 외부 사업자가 IP 주소, 요청 내용 및 메타데이터를 처리할 수 있습니다. QraftCode는 완전한 익명성을 보장한다고 주장하지 않습니다.</p><a href="../../docs/qraftcode/api-settings-ux.md">자격 증명 보안 설계 보기 <span aria-hidden="true">↗</span></a></div>
+          </section>
+
+          <section class="availability" aria-labelledby="availability-title">
+            <div class="availability-title"><span aria-hidden="true">✳</span><strong id="availability-title">QraftCode 서비스 이용 안내</strong></div>
+            <p>QraftCode는 누구나 다양한 AI 모델을 이용할 수 있도록 각 AI API 제공사의 무료 사용량(Free Tier)을 활용하는 것을 목표로 합니다. 무료 티어 특성상 사용량 제한, 일시 중단, 응답 지연, Provider 정책 변경 또는 모델 이용 불가가 발생할 수 있습니다. AI는 모두를 위한 것이어야 합니다.</p>
+            <p class="availability-en"><strong>A Note About QraftCode Availability</strong><br />QraftCode aims to use free-tier allocations to make AI accessible. Limits, interruptions, delays, provider policy changes, and temporary model unavailability may occur. AI should be accessible to everyone.</p>
+          </section>
+          <footer>QraftCode <span>·</span> YOUR CODE. YOUR CRAFT.</footer>
+        </div>
+      </main>
+    </div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
