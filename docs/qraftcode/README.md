@@ -10,20 +10,9 @@ QraftCode is an evolving project based on the MIT-licensed KiloCode repository. 
 - A local CLI scaffold: `packages/qraftcode-cli/` (no provider calls yet).
 - A loopback-only Zen API development scaffold: `packages/qraftcode-zen/` (no provider adapters or admin secret loader; not for deployment).
 - Responsive Web model settings UI preview: [`apps/qraftcode-web/index.html`](../../apps/qraftcode-web/index.html); there is no user API-key field.
-- Korean and English project descriptions and a root QraftCode introduction: [`docs/qraftcode/project-description.md`](project-description.md), [`QRAFTCODE.md`](../../QRAFTCODE.md).
-- Administrator-only provider credential policy: [`docs/qraftcode/admin-provider-credentials.md`](admin-provider-credentials.md).
-- A conservative candidate/status ledger: [`docs/qraftcode/providers/README.md`](providers/README.md).
+- Provider verification ledger and requested candidate list: [`docs/qraftcode/providers/README.md`](providers/README.md).
+- Free-tier availability and instability notice in the Web preview and project descriptions.
 
 ## Current limitations
 
-No third-party provider is verified or wired into the QraftCode catalog. CLI generation commands therefore fail explicitly; Zen generation endpoints return `503 no_verified_provider`. The Zen scaffold rejects production startup and only binds to loopback. Authentication, administrator secret loading/storage, provider adapters, public anonymous access, rate limiting, usage accounting, live model discovery, streaming, image generation, embeddings, Web login/chat/history, and fallback routing are not implemented. QraftCode users do not provide Provider keys; administrators also cannot configure keys through QraftCode yet. The Web settings UI is a static preview. Provider candidates are not confirmed free, anonymous, or operational. Do not deploy these scaffolds as a public service. The inherited KiloCode runtime remains a separate, upstream-derived product surface; a complete brand/identifier migration is not finished.
-
-Run the package checks from the repository root:
-
-```sh
-bun run --cwd packages/qraftcode-core typecheck
-bun run --cwd packages/qraftcode-core test
-bun run --cwd packages/qraftcode-cli typecheck
-bun run --cwd packages/qraftcode-zen typecheck
-bun run --cwd packages/qraftcode-zen test
-```
+No third-party provider is verified or wired into the QraftCode catalog. CLI generation commands therefore fail explicitly; Zen generation endpoints return `503 no_verified_provider`. The Zen scaffold rejects production startup and only binds to loopback. Authentication, administrator secret loading/storage, provider adapters, public anonymous access, rate limiting, usage accounting, live model discovery, streaming, image generation, embeddings, Web login/chat/history, and fallback routing are not implemented. QraftCode users do not provide Provider keys; administrators also cannot configure keys through QraftCode yet. Requested provider candidates are not confirmed free, keyless, or operational. Typhoon's official docs describe API-key authentication. Do not deploy these scaffolds as a public service. The inherited KiloCode runtime remains a separate, upstream-derived product surface; a complete brand/identifier migration is not finished.

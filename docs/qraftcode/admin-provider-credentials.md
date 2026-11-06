@@ -1,36 +1,7 @@
-# 관리자 전용 Provider 자격 증명 운영 원칙
+# QraftCode provider availability and admin credentials
 
-## 정책
+QraftCode end users are not asked to provide provider API keys. Once integrations are verified and implemented, operators will configure service credentials in the deployment's Secret Manager. The current Zen scaffold has no provider adapter or secret loader, so it cannot use a key that may already have been added to GitHub or another deployment dashboard.
 
-QraftCode 사용자는 Provider API 키를 입력하지 않습니다. QraftCode 운영자가 서비스용 Provider 자격 증명을 서버 환경에서 관리하고, 사용자는 준비된 모델만 선택해 이용합니다.
+QraftCode plans to use provider free-tier allocations where they are genuinely offered and provider terms allow it. Free quotas and service availability can change; users may experience usage limits, interruptions, latency, policy changes, or temporary model unavailability. We do not claim every candidate is free, keyless, or stable.
 
-## 현재 구현 상태
-
-현재 QraftCode Zen에는 Provider 어댑터나 운영자 자격 증명 로더/저장소가 연결되어 있지 않습니다. 이 문서는 정책과 운영 설계이며, 키를 입력하는 관리자 UI나 실제 키 등록을 의미하지 않습니다. Provider 키를 채팅, 코드, 공개 저장소 또는 지금의 Web 미리보기에 입력하지 마세요. 현재 QraftCode 제품에서 운영자도 아직 키를 등록해 서비스를 켤 수 없습니다.
-
-## 운영자 설정 방식(기능 구현 후)
-
-1. Provider 공식 문서 및 서비스 정책을 확인하고, 서버 측 사용과 무료 티어/가격 조건을 검증합니다.
-2. Provider 계정에서 서버용 키를 발급하고, 프로덕션 환경의 Secret Manager(또는 이에 준하는 encrypted secret storage)에 등록합니다.
-3. Zen의 검증된 Provider 어댑터만 해당 키를 읽게 합니다. 키는 브라우저, SDK 사용자 응답, 로그, 오류 메시지, analytics에 전달하지 않습니다.
-4. Provider가 문서화한 인증 변수 이름/형식을 사용합니다. Provider 확인 전에는 endpoint, 모델 ID, 인증 header, secret 이름을 추측하지 않습니다.
-5. 키 권한은 최소화하고, 사용량/비용 한도와 rate limit을 설정하며, 정기 교체 및 즉시 폐기 절차를 마련합니다.
-6. 키 미설정/잘못된 키는 fail-closed 처리합니다. 사용자에게 필요한 안내는 “현재 Provider 이용 불가”로 제한하고 비밀 값이나 내부 오류를 노출하지 않습니다.
-
-개발 단계에서 로컬 환경변수를 사용할 수 있게 될 경우에도 실제 키가 포함된 `.env` 파일은 버전 관리에 넣지 않습니다. 프로덕션 배포는 TLS, 관리자 접근통제, 서버 측 키 관리, 로그 redaction, 사용량 제한 및 보안 검토가 끝나기 전에 활성화하지 않습니다.
-
-## 무료 티어 및 가용성
-
-QraftCode는 Provider 무료 사용량이 실제로 제공되고 공식 조건이 허용하는 경우 이를 활용해 서비스 접근성을 높일 수 있습니다. 후보 목록에 있다는 이유만으로 무료 사용, 무인증 접근, 일정한 쿼터 또는 지속적인 가용성을 보장하지 않습니다. 각 Provider의 무료 할당량과 약관은 바뀔 수 있으며, 한도 도달, 일시 중단, 응답 지연, 정책 변경 또는 특정 모델 이용 불가가 발생할 수 있습니다. 운영자는 사용량과 Provider 상태를 확인하고, 사용자에게 장애·대체 모델 여부를 알립니다. 외부 Provider가 IP 주소, 프롬프트, 요청 및 메타데이터를 처리할 수 있으며 완전한 익명성을 약속하지 않습니다.
-
-## 사용자 경험
-
-- 사용자는 Provider 키를 입력하지 않습니다.
-- UI는 Provider별 가용성, 모델, 기능 및 상태만 보여줍니다.
-- Provider가 관리자 자격 증명이나 운영 설정 부족으로 비활성화된 경우 비활성/점검 중이라고 표시합니다.
-- 상태는 실제 health check와 검증 결과에 기반해야 하며, 미검증 Provider를 사용 가능하다고 표시하지 않습니다.
-- Provider 전환이 사용자에게 영향을 주면 대체 모델/사업자 사용 여부를 알립니다.
-
-## 보안 출시 기준
-
-관리자 키 연결은 실제 어댑터와 공식 문서 검증, 비밀 값 접근 통제, 키 유출 방지 테스트, 로그 검사, key rotation/revocation 절차 및 Provider별 실제 API 테스트를 통과해야 합니다. 그 전까지 QraftCode 제품에서 사용 가능한 API 키 등록 기능이 있다고 주장하지 않습니다.
+The requested candidates and current verification statuses are tracked in [`providers/README.md`](providers/README.md). Verify exact service, official endpoint/authentication docs, quotas, capabilities, and terms before enabling each adapter. Never place secrets in this repository or chat. If a key has been committed or disclosed publicly, revoke it and issue a replacement.

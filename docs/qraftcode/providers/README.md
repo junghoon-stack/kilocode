@@ -1,27 +1,34 @@
 # Provider verification ledger
 
-This ledger is intentionally conservative. Listing a provider is not evidence that anonymous access, a free tier, OpenAI compatibility, a particular endpoint, or a model ID exists. Candidates are not routed to or advertised as available until the verification gate is complete.
+This ledger is intentionally conservative. A provider appearing here does not prove that its API is keyless, offers a free tier, is OpenAI-compatible, or permits proxying. Do not route traffic to or advertise a candidate as available until the verification gate is complete.
 
 ## Status meanings
 
-- **Unverified:** no official documentation reviewed for this project; do not advertise or route traffic to it.
-- **Documented:** official documentation and auth/capability details recorded; implementation may still be incomplete.
+- **Unverified:** official API/auth documentation has not been reviewed and recorded for this project; do not enable or advertise.
+- **Documented:** official documentation and access conditions recorded; implementation may still be incomplete.
 - **Implemented:** adapter code and tests exist; this alone does not certify production readiness.
 - **Live-tested:** tested against the actual provider API under documented conditions.
 
-## Requested provider candidates
+## Requested candidates
 
-| Provider | Status | Evidence / notes |
-|---|---|---|
-| OVHcloud AI Endpoints | Unverified | Verify official API docs, account/auth requirements, free allocations/pricing, model catalog, capabilities, rate limits, and terms. |
-| LLM7 | Unverified | Verify canonical official docs, authentication, whether free-tier use is available, models, capabilities, rate limits, and terms. |
-| BlockRun | Unverified | Verify official API/auth documentation, pricing/free allocation, model catalog, capabilities, limits, and terms. |
-| uncloseai | Unverified | Verify canonical provider identity, official API/auth documentation, pricing, model catalog, and terms. |
-| UncensoredLLM.sbs | Unverified | Verify service identity, official docs, authentication, pricing/free allocation, data and safety terms, and capabilities. |
-| llmtech | Unverified | Verify the intended service's canonical identity and official API/auth, pricing, model, and capability documentation. |
-| AI Horde | Unverified | Verify current official API docs, access conditions, quotas, model/task availability, and terms. |
-| Hetzner Inference | Unverified | Verify exact product/service identity, official API/auth docs, pricing/free allocation, model catalog, and terms. |
-| ch.at | Unverified | Verify canonical service identity, official API/auth docs, pricing/free access, model catalog, and terms. |
+| Provider | Status | Keyless status | Evidence / notes |
+|---|---|---|---|
+| OVHcloud AI Endpoints | Unverified | Unconfirmed | Verify official API docs, account/auth requirements, free allocations/pricing, model catalog, capabilities, rate limits, and terms. |
+| LLM7 | Unverified | Unconfirmed | Verify canonical official docs, authentication, free-tier terms, models, capabilities, rate limits, and terms. |
+| BlockRun | Unverified | Unconfirmed | Verify official API/auth documentation, pricing/free allocation, model catalog, capabilities, limits, and terms. |
+| uncloseai | Unverified | Unconfirmed | Verify canonical provider identity, official API/auth documentation, pricing, model catalog, and terms. |
+| UncensoredLLM.sbs | Unverified | Unconfirmed | Verify service identity, official docs, authentication, pricing/free allocation, data and safety terms, and capabilities. |
+| llmtech | Unverified | Unconfirmed | Verify the intended service's canonical identity and official API/auth, pricing, model, and capability documentation. |
+| AI Horde | Unverified | Unconfirmed | Verify current official API docs, access conditions, quotas, model/task availability, and terms. |
+| Hetzner Inference | Unverified | Unconfirmed | Verify exact product/service identity, official API/auth docs, pricing/free allocation, model catalog, and terms. |
+| ch.at | Unverified | Unconfirmed | Verify canonical service identity, official API/auth docs, pricing/free access, model catalog, and terms. |
+| eth-legion | Unverified | Unconfirmed | User reports some endpoints may be callable without a key. Verify exact service identity, official endpoint docs, auth boundaries, limits, and terms before enabling. |
+| Typhoon | Documented | Key required per official docs | Official docs: https://docs.opentyphoon.ai/en/authentication/ . The docs describe API-key authentication; do not label it keyless. Verify any product-specific exception directly with the provider. |
+| IteraCompute | Unverified | Unconfirmed | User reports keyless access. No official API/auth evidence is recorded here; verify exact service, endpoint, access policy, limits, and terms. |
+| Omnicall | Unverified | Ambiguous | Confirm which product is intended. Search results distinguish a claimed AI keyless service from OmiCall telecom APIs requiring a key; verify the exact official product and docs before use. |
+| usefree.space | Unverified | Unconfirmed | User reports keyless access. Verify official docs, service identity, endpoints, allowed use, rate limits, and data terms. |
+| Empero | Unverified | Unconfirmed | User reports keyless access. Verify exact provider identity and official API/auth documentation before use. |
+| Clervo | Unverified | Unconfirmed | User reports keyless access. Verify official API documentation and whether keyless access applies to the intended models/use case. |
 
 ## Other previously proposed candidates
 
@@ -47,6 +54,10 @@ This ledger is intentionally conservative. Listing a provider is not evidence th
 
 `ck-` and `xpi-` are unverified format labels only. Do not parse, validate, transmit, or present them as supported credentials until the issuing provider and official authentication specification have been identified.
 
-## Required record for each provider
+## Required verification record
 
-Before moving a row to **Documented**, add a provider-specific record with official source URLs, date reviewed, exact base URL and operations, authentication method, model discovery source, supported capabilities, rate limits/quotas, free-tier or pricing conditions (including whether the allocation is promotional, capped, or requires an account), retry semantics, data retention/training terms, and restrictions on proxying or resale. Cite official sources where available and clearly mark unresolved points. Free-tier usage and service stability must not be implied unless current official terms support that claim.
+Before moving a row to **Documented**, add provider-specific official source URLs, date reviewed, exact base URL and operations, authentication method (including whether keyless calls are explicitly permitted), model discovery source, supported capabilities, rate limits/quotas, free-tier or pricing conditions (including account requirements and caps), retry semantics, data retention/training terms, and restrictions on proxying or resale. Cite official sources where available and clearly mark unresolved points. Do not infer keyless access from a working browser endpoint, a community SDK, or user reports alone.
+
+## Free-tier availability notice
+
+QraftCode plans to use provider free-tier allocations where they are actually offered and the provider terms permit the intended service use. Free tiers may be limited, delayed, interrupted, changed, or withdrawn. Do not claim that every candidate offers a free tier. Availability must reflect verified provider status and live health checks; fallback must disclose meaningful model/provider changes to users.
