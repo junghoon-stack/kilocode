@@ -28,6 +28,7 @@ export const AiProvidersNav: NavSection[] = [
     title: "AI Gateways",
     links: [
       { href: "/ai-providers/qraftcode-zen", children: "QraftCode Zen" },
+      { href: "/ai-providers/manus-connectors", children: "Manus Connectors" },
       { href: "/ai-providers/openrouter", children: "OpenRouter" },
       { href: "/ai-providers/trustedrouter", children: "TrustedRouter" },
       { href: "/ai-providers/requesty", children: "Requesty" },
