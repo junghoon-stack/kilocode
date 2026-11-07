@@ -10,7 +10,7 @@ sidebar_label: Manus Connectors
 
 ## 현재 활성 커넥터
 
-현재 Manus에서 `enabled`로 확인된 API 커넥터는 **14개**입니다. 아래 Base URL은 각 서비스의 공식 문서에서 확인한 값입니다.
+현재 Manus에서 `enabled`로 확인된 API 커넥터는 **17개**입니다. 아래 Base URL은 각 서비스의 공식 문서에서 확인한 값입니다. `오픈라우터`와 `OpenRouter API`는 같은 OpenRouter 계열의 별도 커넥터이므로 서비스 브랜드 기준으로는 한 번만 셀 수 있습니다.
 
 | 커넥터 이름 | API 프로토콜 | Base URL | 모델 목록 |
 |---|---|---|---|
@@ -26,10 +26,24 @@ sidebar_label: Manus Connectors
 | `Freemodel.dev` | OpenAI Chat Completions / Responses / Anthropic | `https://api.freemodel.dev/v1` | 미문서화 |
 | `LLMsRelay` | OpenAI Chat Completions | `https://api.llmsrelay.com/v1` | `/v1/models` |
 | `OPPER_API_KEY` | OpenAI Chat Completions | `https://api.opper.ai/v3/compat` | `/v3/compat/models` |
+| `OpenRouter API` | OpenAI Compatible | `https://openrouter.ai/api/v1` | `/models` |
+| `Opencode zen` | 프로토콜 확인 필요 | 커넥터 설정 확인 필요 | 커넥터 설정 확인 필요 |
+| `Opus Proxy` | 프로토콜 확인 필요 | 커넥터 설정 확인 필요 | 커넥터 설정 확인 필요 |
 | `routerlab` | OpenAI Chat Completions | `https://api.routerlab.ch/v1` | `/v1/models` |
 | `POLLINATIONS_API_KEY` | 프로토콜 확인 필요 | 공식 문서 확인 필요 | 공식 문서 확인 필요 |
 
 `GitHub`는 활성화된 Manus 내장 커넥터이지만 모델 Provider가 아닙니다. 저장소·브랜치·커밋 관리에 사용합니다.
+
+## Kilo 제공자와 키리스 사용
+
+Manus 커넥터 목록에 나타나지 않는 Kilo 자체 제공자도 별도로 포함해야 합니다.
+
+- **Kilo Gateway** — Kilo의 기본 제공자입니다.
+- **Kilo Auto Free** (`kilo-auto/free`) — API 키나 별도 설정 없이 무료 모델로 자동 라우팅되는 Kilo 제공 계층입니다.
+- **ChatGPT subscription** — Kilo BYOK 화면에서 ChatGPT 구독을 연결하면 OpenAI API 키 없이 사용할 수 있는 접속 방식입니다.
+- **Free models** — Kilo Gateway에서 `:free`로 표시되는 무료 모델은 인증 없이도 사용할 수 있는 경우가 있지만, IP 기준 rate limit과 제공자별 데이터 처리 조건이 적용됩니다.
+
+따라서 개수는 기준에 따라 다릅니다. **활성 API 커넥터는 17개**, OpenRouter 중복 커넥터를 하나의 브랜드로 합친 **고유 API 서비스는 16개**, 여기에 Kilo Gateway를 더한 **고유 제공자 브랜드는 17개**입니다. 키리스 항목은 별도의 API 커넥터가 아니라 Kilo Gateway 안의 무료 라우팅·구독 연결 방식입니다.
 
 ## Native Provider 설정
 
