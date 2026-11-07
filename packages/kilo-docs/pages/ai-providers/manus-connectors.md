@@ -43,8 +43,9 @@ Manus 커넥터 목록에 나타나지 않는 Kilo 자체 제공자도 별도로
 - **ChatGPT subscription** — Kilo BYOK 화면에서 ChatGPT 구독을 연결하면 OpenAI API 키 없이 사용할 수 있는 접속 방식입니다.
 - **GitHub Copilot OAuth** — `kilo auth login`에서 GitHub Copilot OAuth를 사용하면 별도의 Copilot API 키를 입력하지 않고 연결할 수 있습니다.
 - **Free models** — Kilo Gateway에서 `:free`로 표시되는 무료 모델은 인증 없이도 사용할 수 있는 경우가 있지만, IP 기준 rate limit과 제공자별 데이터 처리 조건이 적용됩니다.
+- **사용자가 제공한 키리스 경로** — `BlockRun`, `Clervo`, `Empero`, `UncloseAI`, `Hanzo AI`, `IteraCompute`, `usefree.space`, `Omnicall`, `OVHcloud`, `LLM7`, `AI Horde`, `ch.at`, `eth-legion`, `DuckDuckGo DuckChat`, `BazaarLink`, `Completions.me`, `openapis.online`.
 
-따라서 개수는 기준에 따라 다릅니다. **활성 API 커넥터는 17개**, OpenRouter 중복 커넥터를 하나의 브랜드로 합친 **고유 API 서비스는 16개**, 여기에 Kilo Gateway·ChatGPT subscription·GitHub Copilot OAuth를 더한 **연결 가능한 고유 제공자·접속 브랜드는 19개**입니다. `kilo-auto/free`와 `:free` 모델은 이 Kilo Gateway 안의 키리스 라우팅이므로 별도 Provider로 중복 집계하지 않습니다.
+따라서 개수는 기준에 따라 다릅니다. **활성 API 커넥터는 17개**, OpenRouter 중복 커넥터를 하나의 브랜드로 합친 **고유 API 서비스는 16개**, Kilo Gateway·ChatGPT subscription·GitHub Copilot OAuth를 더한 기존 **고유 제공자·접속 브랜드는 19개**입니다. 여기에 사용자가 제공한 키리스 경로 17개를 별도 항목으로 더하면 **총 36개**입니다. `kilo-auto/free`와 `:free` 모델은 이 Kilo Gateway 안의 키리스 라우팅이므로 별도 Provider로 중복 집계하지 않습니다. 키리스 경로 17개의 실제 Base URL과 이용 정책은 별도 확인 전까지 사용자 제공 목록으로만 기록합니다.
 
 ## Native Provider 설정
 
